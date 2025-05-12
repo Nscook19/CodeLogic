@@ -28,7 +28,7 @@ async function sendMessage() {
 
     try {
         // Send to backend
-        const BACKEND_URL = "https://your-backend-url.com/chat"; // update after deploying
+        const BACKEND_URL = "https://codelogic-backend.onrender.com/chat";
         const response = await fetch(BACKEND_URL, {
             method: "POST",
             headers: {
