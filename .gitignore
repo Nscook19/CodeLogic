@@ -1,0 +1,10 @@
+# Python & sensitive files
+backend/__pycache__/
+backend/.env
+*.pyc
+__pycache__/
+
+# Node/npm (if needed later)
+node_modules/
+.env
+backend/key.env
