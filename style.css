@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #ffffff;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
+.header {
+    width: 1500px;  /* Same as chatbox */
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    color: #ffa500;
+    font-size: 36px;
+    margin: 0;
+}
+
+.header h2 {
+    color: #bbbbbb;
+    font-size: 20px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+#chatbox {
+    border: 1px solid #444;
+    background-color: #2a2a2a;
+    padding: 20px;
+    width: 1500px;
+    height: 600px;
+    overflow-y: scroll;
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+.input-container {
+    display: flex;
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    gap: 10px;                /* space between input and button */
+    margin-top: 20px;
+    width: 1545px;
+}
+
+input[type="text"] {
+    flex: 1;                  /* Take up all available space */
+    padding: 12px 15px;
+    font-size: 18px;
+    background-color: #333;
+    color: #c9c9c9;
+    border: 1px solid #555;
+    border-radius: 5px;
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #ffa500;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap; /* keep button from wrapping */
+}
+
+button:hover {
+    background-color: #e69500;
+}
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #777;
+}
+
+.message {
+    max-width: 70%;
+    padding: 12px 15px;
+    border-radius: 15px;
+    margin: 10px 0;
+    font-size: 18px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background-color: #444;
+    color: #fff;
+    align-self: flex-end;
+    border-top-right-radius: 0;
+}
+
+.message.ai {
+    background-color: #ffa500;
+    color: #000;
+    align-self: flex-start;
+    border-top-left-radius: 0;
+}
+
+#chatbox {
+    display: flex;
+    flex-direction: column;
+}
