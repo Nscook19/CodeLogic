@@ -1,10 +1,10 @@
 # CodeLogic 🧠💻  
-An AI-powered tutoring app that helps users learn **coding and math** through a conversational chat interface — built with FastAPI, vanilla JS, and fully deployed on **Render** and **GitHub Pages**.
+An AI-powered tutoring app that helps users learn **coding and math** through a conversational chat interface — built with **FastAPI**, **vanilla JavaScript**, and fully deployed using **Render** and **GitHub Pages**.
 
 ## 🔗 Live Demo
 
-🌐 Frontend: [https://nscook19.github.io/CodeLogic/](https://nscook19.github.io/CodeLogic/)  
-🚀 Backend API: [https://codelogic-backend.onrender.com](https://codelogic-backend.onrender.com)
+- 🌐 Frontend: [https://nscook19.github.io/CodeLogic/](https://nscook19.github.io/CodeLogic/)  
+- 🚀 Backend API: [https://codelogic-backend.onrender.com](https://codelogic-backend.onrender.com)
 
 ---
 
@@ -16,38 +16,34 @@ An AI-powered tutoring app that helps users learn **coding and math** through a 
 | Backend      | Python, FastAPI                            |
 | AI API       | OpenAI API (via secure backend proxy)      |
 | Deployment   | GitHub Pages (Frontend), Render (Backend)  |
-| Version Control | Git + GitHub                            |
+| Version Control | Git + GitHub (multi-branch workflow)    |
+| Security     | Environment Variables (.env), API proxying |
 
 ---
 
 ## 📌 Features
 
-- 🧠 Real-time AI tutoring for coding & math problems
-- 📄 Clean chat-style interface with timestamps and animations
-- ⚙️ Custom backend logic to detect confusion levels and handle OpenAI API securely
-- 🔒 API key protected on server-side using environment variables
+- 🧠 Real-time AI tutoring for coding & math problems  
+- 📄 Clean chat-style interface with timestamps and animations  
+- ⚙️ Custom backend logic to detect confusion levels and handle OpenAI API securely  
+- 🔒 API key protected on server-side using environment variables  
 - 🌍 Fully deployed using free-tier infrastructure (Render + GitHub Pages)
 
 ---
 
-## ✨ What I Learned
+## 💡 Key Technical Highlights
 
-> “This project was a deep dive into **frontend/backend integration**, and deploying a **real-world, user-facing AI application**.”
-
-### 🧱 Core Lessons:
-- **Frontend Dev**: Creating responsive interfaces using HTML/CSS/JS without frameworks
-- **Backend Dev**: Building API endpoints with FastAPI and structuring Python logic for response generation
-- **Environment Config**: Using `.env` securely, and loading API keys with `python-dotenv`
-- **Deployment**:
-  - Deploying static frontend to **GitHub Pages**
-  - Hosting a Python web service on **Render**
-  - Diagnosing production errors (e.g. 404, backend sleep/wake, incorrect paths)
-- **DevOps Workflow**: Using Git branches (`main` and `gh-pages`), force-pushes, and history rewriting to remove secrets from Git history
+- 🔧 Built and deployed a full-stack chatbot using open-source tools and cloud hosting (no frameworks)
+- 🌐 Configured secure API proxy on the backend to protect OpenAI keys with `python-dotenv` and `.env` files
+- ⚙️ Diagnosed and fixed production deployment issues including backend sleep/wake cycles, 404 routing errors, and CORS misconfigurations
+- 🔒 Used Git branches and history rewriting to remove exposed secrets and enforce secure DevOps practices
+- 🧪 Created a clean, interactive UI with chat-style animations and real-time user interaction (via fetch API)
 
 ---
 
-## 🚧 Future Plans
+## ✍️ What I Learned
 
-- Save and reload chat history using localStorage or backend DB
-- Add topic filtering (e.g. Python vs Algebra vs JavaScript)
-- Display smarter AI suggestions based on hint levels
+- ☁️ How to deploy and manage **cloud-hosted web applications**
+- 🔍 Real-world debugging of issues across **frontend, backend, and network layers**
+- 🧰 Best practices in **environment config, version control, and API security**
+- 📋 The importance of **clear documentation and problem-solving** in multi-layer systems
