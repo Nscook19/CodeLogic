@@ -11,8 +11,7 @@ from topic_validator import is_valid_topic
 from hint_levels import detect_hint_levels
 import json
 from datetime import datetime
-from fastapi.responses import FileResponse, JSONResponse
-from fastapi import Request, HTTPException
+from fastapi import Request
 import logging
 
 logging.basicConfig(
