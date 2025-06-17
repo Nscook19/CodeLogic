@@ -13,18 +13,16 @@ import json
 from datetime import datetime
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi import Request, HTTPException
+import logging
 
-LOG_KEY = "secret123"
-LOG_FILE = "logs.jsonl"
+logging.basicConfig(
+    filename='app.log',   # log file name
+    level=logging.INFO,   # log level INFO and above
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
 
 def log_user_interaction(ip, user_input):
-    entry = {
-        "timestamp": datetime.utcnow().isoformat(),
-        "ip": ip,
-        "user_input": user_input
-    }
-    with open(LOG_FILE, "a", encoding="utf-8") as f:
-        f.write(json.dumps(entry) + "\n")
+    logging.info(f"IP: {ip} - User Input: {user_input}")
 
 
 # Session memory to store chat history per IP
@@ -135,15 +133,3 @@ async def chat(req: ChatRequest, request: Request):
     safe_response = filter_response(raw_response)
 
     return {"response": safe_response}
-
-@app.get("/logs")
-async def get_logs(request: Request):
-    key = request.query_params.get("key")
-    if key != "secret123":
-        raise HTTPException(status_code=403, detail="Forbidden")
-    
-    if not os.path.exists(LOG_FILE):
-        # Return an empty JSON array or message instead of 404
-        return JSONResponse(content={"logs": []})
-
-    return FileResponse(LOG_FILE, media_type="text/plain", filename="logs.jsonl")
