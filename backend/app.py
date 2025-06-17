@@ -11,9 +11,10 @@ from topic_validator import is_valid_topic
 from hint_levels import detect_hint_levels
 import json
 from datetime import datetime
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
 from fastapi import Request, HTTPException
 
+LOG_KEY = "secret123"
 LOG_FILE = "logs.jsonl"
 
 def log_user_interaction(ip, user_input):
@@ -140,4 +141,9 @@ async def get_logs(request: Request):
     key = request.query_params.get("key")
     if key != "secret123":
         raise HTTPException(status_code=403, detail="Forbidden")
-    return FileResponse("logs.jsonl", media_type="text/plain", filename="logs.jsonl")
+    
+    if not os.path.exists(LOG_FILE):
+        # Return an empty JSON array or message instead of 404
+        return JSONResponse(content={"logs": []})
+
+    return FileResponse(LOG_FILE, media_type="text/plain", filename="logs.jsonl")
