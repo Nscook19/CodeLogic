@@ -9,6 +9,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from filters import filter_response
 from topic_validator import is_valid_topic
 from hint_levels import detect_hint_levels
+import json
+from datetime import datetime
+
+LOG_FILE = "logs.jsonl"
+
+def log_user_interaction(ip, user_input):
+    entry = {
+        "timestamp": datetime.utcnow().isoformat(),
+        "ip": ip,
+        "user_input": user_input
+    }
+    with open(LOG_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry) + "\n")
+
 
 # Session memory to store chat history per IP
 session_memory = {}
@@ -64,6 +78,8 @@ async def chat(req: ChatRequest, request: Request):
     # checks for spam
     ip = request.client.host
     now = time()
+
+    log_user_interaction(ip, user_input)
 
     if ip in last_request_time and now - last_request_time[ip] < THROTTLE_TIME:
         return {"response": "Please slow down and wait a few seconds before asking another question."}
