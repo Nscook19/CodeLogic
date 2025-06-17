@@ -11,6 +11,8 @@ from topic_validator import is_valid_topic
 from hint_levels import detect_hint_levels
 import json
 from datetime import datetime
+from fastapi.responses import FileResponse
+from fastapi import Request, HTTPException
 
 LOG_FILE = "logs.jsonl"
 
@@ -132,3 +134,10 @@ async def chat(req: ChatRequest, request: Request):
     safe_response = filter_response(raw_response)
 
     return {"response": safe_response}
+
+@app.get("/logs")
+async def get_logs(request: Request):
+    key = request.query_params.get("key")
+    if key != "secret123":
+        raise HTTPException(status_code=403, detail="Forbidden")
+    return FileResponse("logs.jsonl", media_type="text/plain", filename="logs.jsonl")
