@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request
 from pydantic import BaseModel
 from time import time
-from fastapi import Request
 import openai
 import os
 from dotenv import load_dotenv
@@ -9,6 +8,30 @@ from fastapi.middleware.cors import CORSMiddleware
 from filters import filter_response
 from topic_validator import is_valid_topic
 from hint_levels import detect_hint_levels
+import json
+from datetime import datetime
+import logging
+from pathlib import Path
+import csv
+
+logging.basicConfig(
+    filename='app.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+LOG_CSV_PATH = "user_logs.csv"
+
+# Function to log user input to both file log and CSV
+def log_user_interaction(ip, user_input):
+    logging.info(f"IP: {ip} - User Input: {user_input}")
+    timestamp = datetime.now().isoformat()
+    file_exists = Path(LOG_CSV_PATH).is_file()
+    with open(LOG_CSV_PATH, mode="a", newline='', encoding="utf-8") as file:
+        writer = csv.writer(file)
+        if not file_exists:
+            writer.writerow(["timestamp", "ip", "user_input"])
+        writer.writerow([timestamp, ip, user_input])
 
 # Session memory to store chat history per IP
 session_memory = {}
@@ -64,6 +87,8 @@ async def chat(req: ChatRequest, request: Request):
     # checks for spam
     ip = request.client.host
     now = time()
+
+    log_user_interaction(ip, user_input)
 
     if ip in last_request_time and now - last_request_time[ip] < THROTTLE_TIME:
         return {"response": "Please slow down and wait a few seconds before asking another question."}
