@@ -28,7 +28,8 @@ async function sendMessage() {
 
     try {
         // Send to backend
-        const BACKEND_URL = "https://codelogic-backend.onrender.com/chat";
+        //const BACKEND_URL = "https://codelogic-backend.onrender.com/chat";
+        const BACKEND_URL = "http://127.0.0.1:8000/chat";
         const response = await fetch(BACKEND_URL, {
             method: "POST",
             headers: {
