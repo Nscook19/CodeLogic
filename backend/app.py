@@ -13,6 +13,8 @@ from datetime import datetime
 import logging
 from pathlib import Path
 import csv
+import sqlite3
+
 
 logging.basicConfig(
     filename='app.log',
@@ -20,18 +22,33 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
-LOG_CSV_PATH = "user_logs.csv"
-
-# Function to log user input to both file log and CSV
-def log_user_interaction(ip, user_input):
-    logging.info(f"IP: {ip} - User Input: {user_input}")
+def log_user_interaction(ip, user_input, ai_response):
+    logging.info(f"IP: {ip} - User Input: {user_input} - AI Response: {ai_response}")
     timestamp = datetime.now().isoformat()
-    file_exists = Path(LOG_CSV_PATH).is_file()
-    with open(LOG_CSV_PATH, mode="a", newline='', encoding="utf-8") as file:
-        writer = csv.writer(file)
-        if not file_exists:
-            writer.writerow(["timestamp", "ip", "user_input"])
-        writer.writerow([timestamp, ip, user_input])
+
+    conn = sqlite3.connect("chat_logs.db")
+    cursor = conn.cursor()
+
+    # Create the logs table if it doesn't exist
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS chat_logs (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp TEXT,
+            ip TEXT,
+            user_input TEXT,
+            ai_response TEXT
+        )
+    """)
+
+    # Insert the chat record
+    cursor.execute("""
+        INSERT INTO chat_logs (timestamp, ip, user_input, ai_response)
+        VALUES (?, ?, ?, ?)
+    """, (timestamp, ip, user_input, ai_response))
+
+    conn.commit()
+    conn.close()
+
 
 # Session memory to store chat history per IP
 session_memory = {}
@@ -88,7 +105,7 @@ async def chat(req: ChatRequest, request: Request):
     ip = request.client.host
     now = time()
 
-    log_user_interaction(ip, user_input)
+    log_user_interaction(ip, user_input, safe_response)
 
     if ip in last_request_time and now - last_request_time[ip] < THROTTLE_TIME:
         return {"response": "Please slow down and wait a few seconds before asking another question."}
