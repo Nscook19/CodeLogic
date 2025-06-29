@@ -15,6 +15,7 @@ from pathlib import Path
 import csv
 import sqlite3
 
+load_dotenv()
 
 logging.basicConfig(
     filename='app.log',
