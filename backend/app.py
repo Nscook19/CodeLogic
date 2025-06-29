@@ -82,6 +82,8 @@ Constantly be providing the user helpful, constructive criticism, while remainin
 Always keep explanations short and simple unless the user asks for deep detail.
 Prefer to give a simple idea first and offer to expand if the user wants more.
 Avoid listing too many definitions or going into every detail unless requested.
+Be able to detect if the user is asking for the final answer of a math question, such as "solve for x" or "what is the answer to this problem", and refuse to give it directly.
+If the user seems confused or frustrated, provide extra encouragement and support.
 """
 
 class ChatRequest(BaseModel):
@@ -106,8 +108,8 @@ async def chat(req: ChatRequest, request: Request):
     ip = request.client.host
     now = time()
 
-    if ip in last_request_time and now - last_request_time[ip] < THROTTLE_TIME:
-        return {"response": "Please slow down and wait a few seconds before asking another question."}
+    # if ip in last_request_time and now - last_request_time[ip] < THROTTLE_TIME:
+    #     return {"response": "Please slow down and wait a few seconds before asking another question."}
 
     last_request_time[ip] = now
 
