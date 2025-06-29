@@ -105,7 +105,7 @@ async def chat(req: ChatRequest, request: Request):
     ip = request.client.host
     now = time()
 
-    log_user_interaction(ip, user_input, safe_response)
+    log_user_interaction(ip, user_input)
 
     if ip in last_request_time and now - last_request_time[ip] < THROTTLE_TIME:
         return {"response": "Please slow down and wait a few seconds before asking another question."}
