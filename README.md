@@ -4,20 +4,20 @@ A full-stack AI-powered tutoring system that helps users learn **coding and math
 
 ---
 
-## 🔗 Live Demos
+## Live Demos
 
 - **Frontend**: [https://nscook19.github.io/CodeLogic/](https://nscook19.github.io/CodeLogic/)
 - **Backend API**: [https://codelogic-backend.onrender.com](https://codelogic-backend.onrender.com)
 
 ---
 
-## 🧠 Project Overview
+## Project Overview
 
 CodeLogic is more than a chatbot — it’s a **data science-backed platform** designed to personalize tutoring based on prompt complexity, user intent, and historical data patterns. Using **OpenAI's API**, the system generates dynamic responses to coding and math questions, while also being able to collect and analyze usage data to improve performance and topic relevance.
 
 ---
 
-## 🔬 Data Science & Analysis
+## Data Science & Analysis
 
 The backend logs user prompts and AI responses to a structured CSV format. Using **pandas**, **scikit-learn**, **matplotlib**, and **seaborn** in **Jupyter Notebooks**, I performed an in-depth analysis on 100 user queries:
 
@@ -32,7 +32,7 @@ This analysis allowed me to **better understand user behavior** and informed how
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer        | Tools Used                                |
 |--------------|--------------------------------------------|
@@ -45,7 +45,7 @@ This analysis allowed me to **better understand user behavior** and informed how
 
 ---
 
-## ⚙️ Key Features
+## Key Features
 
 - Chat-style interface for math/coding help with animated responses
 - Secure API proxying to keep OpenAI keys off the frontend
@@ -55,7 +55,7 @@ This analysis allowed me to **better understand user behavior** and informed how
 
 ---
 
-## 🧰 Technical Achievements
+## Technical Achievements
 
 - Built a RESTful API using **FastAPI** for managing OpenAI prompts and user logging
 - Designed a **Jupyter notebook-based pipeline** to analyze educational query patterns
@@ -69,7 +69,7 @@ This analysis allowed me to **better understand user behavior** and informed how
 
 ---
 
-## 📚 What I Learned
+## What I Learned
 
 - How to build, deploy, and maintain a cloud-hosted AI application
 - How to leverage **data science** to inform design decisions
