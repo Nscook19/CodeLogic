@@ -13,7 +13,7 @@ A full-stack AI-powered tutoring system that helps users learn **coding and math
 
 ## Project Overview
 
-CodeLogic is more than a chatbot — it’s a **data science-backed platform** designed to personalize tutoring based on prompt complexity, user intent, and historical data patterns. Using **OpenAI's API**, the system generates dynamic responses to coding and math questions, while also being able to collect and analyze usage data to improve performance and topic relevance.
+CodeLogic is more than a chatbot, it’s a **data science-backed platform** designed to personalize tutoring based on prompt complexity, user intent, and historical data patterns. Using **OpenAI's API**, the system generates dynamic responses to coding and math questions, while also being able to collect and analyze usage data to improve performance and topic relevance.
 
 ---
 
